@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do Application</title>
+</head>
+<body>
+
+<a href="{% url 'tasks' %}"></a>
+<form method="POST">
+    {% csrf_token %}
+    <p>Are you sure to delete this task ? "{{task.title}}"</p>
+    <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>
