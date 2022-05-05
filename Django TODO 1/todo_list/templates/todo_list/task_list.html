@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>To-Do Application</title>
-</head>
-<body>
+{% extends 'todo_list/main.html' %}
+{% block content %}
 
 {% if request.user.is_authenticated %}
     <p>{{request.user}}</p>
@@ -16,6 +11,12 @@
 <hr>
 <h1>My To Do List {{color}}</h1>
 <a href="{% url 'task_create' %}">Add Task</a>
+
+<form method="GET">
+    <input type="text" name="search-area" value="{{search_input}}">
+    <input type="submit" value="Search">
+</form>
+
 <table>
     <tr>
         <th>Item</th>
@@ -24,7 +25,7 @@
     {% for task in tasks %}
     <tr>
         <td>{{task.title}}</td>
-        <td><a href="{% url 'task' task.id %}">View</a></td>
+<!--        <td><a href="{% url 'task' task.id %}">View</a></td>-->
         <td><a href="{% url 'task_update' task.id %}">Edit</a></td>
         <td><a href="{% url 'task_delete' task.id %}">Delete</a></td>
     </tr>
@@ -33,5 +34,4 @@
     {% endfor %}
 </table>
 
-</body>
-</html>
+{% endblock %}
