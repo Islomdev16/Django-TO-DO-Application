@@ -1,11 +1,17 @@
 {% extends 'todo_list/main.html' %}
 {% block content %}
 
-<a href="{% url 'tasks' %}"></a>
-<form method="POST">
-    {% csrf_token %}
-    <p>Are you sure to delete this task ? "{{task.title}}"</p>
-    <input type="submit" value="Delete">
-</form>
+<div class="header-bar">
+    <a href="{% url 'tasks' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go back</a>
+</div>
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure to delete this task ? <u> "{{task.title}}"</u></p>
+<!--        <input class="button" type="submit" value="🗑 Delete">-->
+        <button type="submit" class="button">Delete</button>
+    </form>
+</div>
 
 {% endblock %}

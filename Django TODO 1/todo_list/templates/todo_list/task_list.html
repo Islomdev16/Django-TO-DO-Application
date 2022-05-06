@@ -4,21 +4,30 @@
 <div class="header-bar">
     <div>
         <h1>Hello {{request.user|title}}</h1>
-        <h3 style="margin:0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:'s' }}</h3>
+        <h5 style="margin:0">You have <i><u>{{count}}</u></i> incomplete task{{ count|pluralize:'s' }}</h5>
     </div>
     {% if request.user.is_authenticated %}
-        <a href="{% url 'logout' %}" style="font-weight: bold; font-size: 20px;"><img src="https://www.iconsdb.com/icons/preview/white/logout-xl.png" width="20px"> Logout</a>
+        <a href="{% url 'logout' %}" style="font-weight: bold; font-size: 20px; margin-top: -3%;"><img src="https://www.iconsdb.com/icons/preview/white/logout-xl.png" style="margin-top: -4%;" width="20px"> Logout</a>
     {% else %}
         <a href="{% url 'login' %}">Login</a>
     {% endif %}
 </div>
 
 <div id="search-add-wrapper">
-    <form method="GET" style="margin-top: 20px; display: flex;">
-        <input type="text" name="search-area" value="{{search_input}}">
-        <input class="button" type="submit" value="Search">
+    <div class="input-group">
+  <div class="form-outline">
+    <input type="search" id="form1" class="form-control" />
+    <label class="form-label" for="form1">Search</label>
+  </div>
+  <button type="button" class="btn btn-primary">
+    <i class="fas fa-search"></i>
+  </button>
+</div>
+    <form method="GET" style="margin-top: 5px; display: flex;">
+        <input type="text" name="search-area" placeholder="Search for your tasks ..." value="{{search_input}}">
+            <button type="submit" class="button"><span class="fas fa-search"></span> Search</button>
     </form>
-    <a id="add-link" href="{% url 'task_create' %}">&#x2b</a>
+    <a id="add-link" href="{% url 'task_create' %}" class="w3-btn w3-large w3-circle w3-red w3-card-4">+</a>
 </div>
 
 <div class="task-items-wrapper">
