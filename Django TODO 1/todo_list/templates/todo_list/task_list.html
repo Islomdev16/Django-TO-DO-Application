@@ -14,18 +14,9 @@
 </div>
 
 <div id="search-add-wrapper">
-    <div class="input-group">
-  <div class="form-outline">
-    <input type="search" id="form1" class="form-control" />
-    <label class="form-label" for="form1">Search</label>
-  </div>
-  <button type="button" class="btn btn-primary">
-    <i class="fas fa-search"></i>
-  </button>
-</div>
     <form method="GET" style="margin-top: 5px; display: flex;">
         <input type="text" name="search-area" placeholder="Search for your tasks ..." value="{{search_input}}">
-            <button type="submit" class="button"><span class="fas fa-search"></span> Search</button>
+            <button type="submit" class="button"><span class="fal fa-search">Search</span></button>
     </form>
     <a id="add-link" href="{% url 'task_create' %}" class="w3-btn w3-large w3-circle w3-red w3-card-4">+</a>
 </div>
@@ -48,7 +39,8 @@
             {% endif %}
         </div>
     {% empty %}
-    <h3>No items in list</h3>
+    <h4 style="margin-left: 13px; margin-top: 2%;"><img src="https://cdn-icons-png.flaticon.com/512/1636/1636021.png" style="margin-top: -5px;" width="18px"><span style="visibility: hidden;">r</span>No data available in list</h4>
+    <small style="visibility: hidden;">r</small>
     {% endfor %}
 </div>
 

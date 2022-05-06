@@ -1,14 +1,27 @@
 {% extends 'todo_list/main.html' %}
 {% block content %}
 
-  <h1>Registration Form</h1>
+    <div class="header-bar">
+        <h1>Register Now</h1>
+    </div>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Register">
-    </form>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <label>{{form.username.label}}</label>
+            {{form.username}}
 
-    <h5>Already have an account? <a href="{% url 'login' %}">Sign in </a>here.</h5>
+            <label>{{form.gmail.label}}</label>
+            {{form.gmail}}
+
+            <label>{{form.password1.label}}</label>
+            {{form.password1}}
+
+            <label>{{form.password2.label}}</label>
+            {{form.password2}}
+            <button type="submit" class="button" style="margin-top: 10px;font-size: 20px; padding-top: 1px; padding-left: 10px; padding-right: 10px; padding-bottom: 1px;">Register</button>
+        </form>
+        <p style="font-size: 19px;">Already have an account? <a href="{% url 'login' %}">Sign in </a>here.</p>
+    </div>
 
 {% endblock %}

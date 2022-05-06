@@ -1,14 +1,17 @@
 {% extends 'todo_list/main.html' %}
 {% block content %}
 
-<h1>Login Form</h1>
+<div class="header-bar">
+    <h1>Login Now</h1>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Login">
-</form>
-
-<h5>Don't you have an account ? <a href="{% url 'register' %}">Sign Up </a>now.</h5>
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="button" style="font-size: 20px; padding-top: 1px; padding-left: 10px; padding-right: 10px; padding-bottom: 1px;" type="submit">Login</button>
+    </form>
+    <p style="font-size: 19px;">Don't you have an account ? <a href="{% url 'register' %}">Sign Up </a>now.</p>
+</div>
 
 {% endblock %}
