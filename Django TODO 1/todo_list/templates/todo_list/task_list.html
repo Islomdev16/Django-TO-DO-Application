@@ -1,13 +1,25 @@
 {% extends 'todo_list/main.html' %}
 {% block content %}
+{% load static %}
 
 <div class="header-bar">
-    <div>
-        <h1>Hello {{request.user|title}}</h1>
-        <h5 style="margin:0">You have <i><u>{{count}}</u></i> incomplete task{{ count|pluralize:'s' }}</h5>
+    <div style="margin-top: 6%;">
+        <h1>Hello <span style="font-family: 'Trirong', serif;">{{request.user|title}}</span></h1>
+        <h5 style="margin:0">You have <i style="font-weight: bold; font-size: 25px;">{{count}}</i> incomplete task{{ count|pluralize:'s' }}</h5>
     </div>
+
+    <div>
+        <div class="profile-images">
+            <img src="{% static 'images/userpro.png' %}" id="upload-img">
+        </div>
+        <div class="custom-file">
+            <label for="fileupload">Upload Profile</label>
+            <input type="file" id="fileupload">
+        </div>
+    </div>
+
     {% if request.user.is_authenticated %}
-        <a href="{% url 'logout' %}" style="font-weight: bold; font-size: 20px; margin-top: -3%;"><img src="https://www.iconsdb.com/icons/preview/white/logout-xl.png" style="margin-top: -4%;" width="20px"> Logout</a>
+        <a href="{% url 'logout' %}" style="font-size: 20px; margin-top: -3%; margin-right: -25px;"><button style="font-size: 20px; color: white; background-color: #EB796F; cursor: pointer;"><img src="https://www.iconsdb.com/icons/preview/white/logout-xl.png" style="margin-top: -4%;" width="20px">  Logout</button></a>
     {% else %}
         <a href="{% url 'login' %}">Login</a>
     {% endif %}
@@ -18,7 +30,8 @@
         <input type="text" name="search-area" placeholder="Search for your tasks ..." value="{{search_input}}">
             <button type="submit" class="button"><span class="fal fa-search">Search</span></button>
     </form>
-    <a id="add-link" href="{% url 'task_create' %}" class="w3-btn w3-large w3-circle w3-red w3-card-4">+</a>
+    <small style="margin-left: 40%; text-decoration: underline">Add new task</small>
+    <a id="add-link" href="{% url 'task_create' %}" class="w3-btn w3-xlarge w3-circle w3-red w3-card-4"><img src="{% static 'images/plus.png' %}" style="color: white;" width="25px"></a>
 </div>
 
 <div class="task-items-wrapper">
@@ -27,15 +40,23 @@
             {% if task.complete %}
                 <div class="task-title">
                     <div class="task-complete-icon"></div>
-                    <i><s><a href="{% url 'task_update' task.id %}">{{task}}</a></s></i>
+                    <i><s><a href="{% url 'task' task.id %}">{{task}}</a></s></i>
                 </div>
-            <a class="delete-link" href="{% url 'task_delete' task.id %}">&#215;</a>
+            <div>
+                <a href="{% url 'task_update' task.id %}" style="color: green; font-weight: bold; font-size: 18px;">Edit </a>
+                <small style="visibility: hidden">l</small>
+                <a class="delete-link" href="{% url 'task_delete' task.id %}" style="font-size: 18px;"> Delete</a>
+            </div>
             {% else %}
                 <div class="task-title">
                     <div class="task-incomplete-icon"></div>
-                    <i><s><a href="{% url 'task_update' task.id %}">{{task}}</a></s></i>
+                    <i><s><a href="{% url 'task' task.id %}">{{task}}</a></s></i>
                 </div>
-            <a class="delete-link" href="{% url 'task_delete' task.id %}">&#215;</a>
+            <div>
+                <a href="{% url 'task_update' task.id %}" style="color: green; font-weight: bold; font-size: 18px;">Edit </a>
+                <small style="visibility: hidden">l</small>
+                <a class="delete-link" href="{% url 'task_delete' task.id %}" style="font-size: 18px;"> Delete</a>
+            </div>
             {% endif %}
         </div>
     {% empty %}
@@ -43,5 +64,16 @@
     <small style="visibility: hidden;">r</small>
     {% endfor %}
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+    $(function(){
+        $("#fileupload").change(function(event){
+            var x = URL.createObjectURL(event.target.files[0]);
+            $("#upload-img").attr("src", x);
+        });
+    })
+</script>
 
 {% endblock %}

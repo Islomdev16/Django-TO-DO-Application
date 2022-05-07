@@ -40,6 +40,7 @@ class RegisterPage(FormView):
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "tasks"
+    ordering = ['-created']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
