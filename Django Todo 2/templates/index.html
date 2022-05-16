@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #638CB8;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input::placeholder {
+            color: #d3d3d3;
+        }
+
+        .submit {
+            background-color: 6BA3E8;
+        }
+
+        .center-column {
+            width: 600px;
+            margin: 60px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 3px;
+            box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+        }
+
+        .item-row {
+            background-color: #906abd;
+            margin: 10px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+        }
+
+        .btn-danger {
+            background-color: #ffae19;
+            border-color: #e59400;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="center-column">
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.title}}
+        <div class="d-grid gap-2">
+            <button class="btn btn-info" type="submit">Submit</button>
+        </div>
+    </form>
+
+    <div class="todo-list">
+    {% for task in lists %}
+        <div class="item-row" style="background-color: #906abd;">
+            <a class="btn btn-medium btn-info" href="{% url 'update_task' task.id %}">Edit</a>
+            <a class="btn btn-medium btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+            {% if task.complete == True %}
+                <strike class="text-light" style="margin-left: 2%;">{{task}}</strike>
+            {% else %}
+                <span class="text-light" style="margin-left: 2%;">{{task}}</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

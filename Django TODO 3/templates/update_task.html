@@ -36,14 +36,15 @@
         <h3 class="text-center">TODO Application ➖ Update your Task !</h3><br>
         <form method="POST" action="">
           {% csrf_token %}
-          <div class="form-group">
-              <label>{{form.title.label}}</label><br>
-              <textarea class="form-control" name="title" id="title" cols="15" rows="1">{{form.title.value}}</textarea>
-          </div><br>
-          <div class="form-group">
-            <label>{{form.description.label}}</label><br style="margin-bottom: 1%;">
-            <textarea class="form-control" name="desc" id="desc" cols="30" rows="10">{{form.description.value}}</textarea>
-          </div>
+            {{form.as_p}}
+<!--          <div class="form-group">-->
+<!--              <label>{{form.title.label}}</label><br>-->
+<!--              <input type="text" name="title" value="{{form.title}}">-->
+<!--          </div><br>-->
+<!--          <div class="form-group">-->
+<!--            <label>{{form.description.label}}</label><br style="margin-bottom: 1%;">-->
+<!--            <textarea class="form-control" name="desc" id="desc" cols="30" rows="10">{{form.description.value}}</textarea>-->
+<!--          </div>-->
           <br>
           <button type="submit" class="btn btn-primary">Update</button>
         </form>
