@@ -4,25 +4,23 @@
 <div class="row">
     <div class="col">
         <center class="h2">ToDo Application - Add New Task</center><br><br>
-        <form class="form-inline">
-            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Type here to add new task...">
+        <form class="form-inline" method="POST" action="{% url 'add_todo' %}">
+            {% csrf_token %}
+            <input type="text" name="title" class="form-control mb-2 mr-sm-2" placeholder="Type the title of your task..."><br>
+            <textarea class="form-control" name="desc" id="desc" cols="30" rows="6" placeholder="Type the description of your task..."></textarea><br>
             <button type="submit" class="btn btn-outline-success mb-2">Submit</button>
         </form>
     </div>
 </div>
 <br><br>
-<div class="row">
-  <div class="col-4">
-    <div class="list-group" id="list-tab" role="tablist">
-        <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Home</a>
+<div class="row mt-4">
+    <div class="col">
+        <ul class="list-group">
+            {% for todo_item in todo_items %}
+                <li class="list-group-item">{{todo_item.text}}</li>
+            {% endfor %}
+        </ul>
     </div>
-  </div>
-  <div class="col-8">
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
-    </div>
-  </div>
 </div>
-
 
 {% endblock %}
