@@ -14,9 +14,17 @@ def home(request):
 
 @csrf_exempt
 def add_todo(request):
-    current_date = timezone.now()
-    title = request.POST['title']
-    new_task = Todo.objects.create(added_time=current_date, title=title)
-    length_of_todos = Todo.objects.all().count()
+    if not request.POST['title'] == '':
+        current_date = timezone.now()
+        title = request.POST['title']
+        new_task = Todo.objects.create(added_time=current_date, title=title)
+        length_of_todos = Todo.objects.all().count()
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/')
+
+@csrf_exempt
+def task_delete(request, pk):
+    Todo.objects.get(id=pk).delete()
     return HttpResponseRedirect('/')
 
