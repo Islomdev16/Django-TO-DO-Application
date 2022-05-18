@@ -6,8 +6,7 @@
         <center class="h2">ToDo Application - Add New Task</center><br><br>
         <form class="form-inline" method="POST" action="{% url 'add_todo' %}">
             {% csrf_token %}
-            <input type="text" name="title" class="form-control mb-2 mr-sm-2" placeholder="Type the title of your task..."><br>
-            <textarea class="form-control" name="desc" id="desc" cols="30" rows="6" placeholder="Type the description of your task..."></textarea><br>
+            <input type="text" name="title" class="form-control mb-2 mr-sm-2" placeholder="Type new task here..."><br>
             <button type="submit" class="btn btn-outline-success mb-2">Submit</button>
         </form>
     </div>
