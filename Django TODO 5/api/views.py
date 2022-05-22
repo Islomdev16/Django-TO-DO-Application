@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import TaskSerializer
 from todo_list.models import Task
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -35,6 +36,11 @@ def update_todo(request, pk):
 
 @api_view(['DELETE'])
 def delete_todo(request, pk):
-    task = Task.objects.get(id=pk)
-    task.delete()
-    return Response('This task is successfully deleted !')
+    # task = Task.objects.get(id=pk)
+    if Task.objects.get(id=pk) is None:
+        return HttpResponseRedirect("/")
+    else:
+        task.delete()
+        task_id = task[0]
+        return Response(f"{task_id} is deleted successfully !")
+
