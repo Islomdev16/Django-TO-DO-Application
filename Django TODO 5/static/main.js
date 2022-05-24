@@ -8,16 +8,13 @@ function getTodos(){
 
         for(let d of data){
             let listContainer = `
-            <div class="wrapper">
-                <div style="margin-top: 1px;"><p>${d.title}</p></div>
-                <div class="d-flex">
-                    <div class="editbtn"><i class="fas fa-pen-alt"></i></div>
-                    <div class="delbtn"><i class="fas fa-trash"></i></div>
-                </div>
-            </div>
+                 <p>${d.title}</p>
         `
+
             wrapper.innerHTML += listContainer
         }
+
+
     })
 }
 getTodos()
@@ -27,7 +24,7 @@ form.addEventListener('submit', function(e){
     let inputValue = document.getElementById('input').value
 //    console.log(inputValue)
 
-    const data = {title: inputValue};
+    const data = { title: inputValue };
     let url = 'http://127.0.0.1:8000/api/create_todo/'
     fetch(url, {
         method: 'POST',
