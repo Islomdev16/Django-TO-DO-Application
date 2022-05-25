@@ -22,3 +22,18 @@ def delete_task(request, pk):
     task.delete()
     return redirect('all_tasks')
 
+def update_task(request, pk):
+    todo = Mytodo.objects.get(id=pk)
+    updateForm = TodoForm(instance=todo)
+    if request.method == 'POST':
+        updateForm = TodoForm(request.POST, instance=todo)
+        if updateForm.is_valid():
+            updateForm.save()
+            return redirect('all_tasks')
+
+    context = {
+        'todo':todo,
+        'update_form':updateForm
+    }
+    return render(request, 'update.html', context)
+

@@ -8,18 +8,12 @@
     <title>Todo Application</title>
 </head>
 <body>
-    <h1>Todo Application</h1>
+    <h1>Update Form</h1>
     <form method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
+        {{update_form.as_p}}
         <button type="submit">Submit</button>
     </form>
-
-    {% for todo in tasks %}
-        <p>{{todo.tasks}}</p>
-        <a href="{% url 'update_task' todo.id %}"><button>Update</button></a>
-        <a href="{% url 'delete_task' todo.id %}"><button>Delete</button></a>
-    {% endfor %}
 
 </body>
 </html>
