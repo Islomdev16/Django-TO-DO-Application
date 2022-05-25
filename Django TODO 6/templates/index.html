@@ -9,5 +9,17 @@
 </head>
 <body>
     <h1>Todo Application</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% for todo in tasks %}
+        <p>{{todo.tasks}}</p>
+        <a href=""><button>Update</button></a>
+        <a href="{% url 'delete_task' todo.id %}"><button>Delete</button></a>
+    {% endfor %}
+
 </body>
 </html>

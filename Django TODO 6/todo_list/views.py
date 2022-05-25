@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Mytodo
 from .forms import TodoForm
 
@@ -16,4 +16,9 @@ def home(request):
         'form': form
     }
     return render(request, 'index.html', context)
+
+def delete_task(request, pk):
+    task = Mytodo.objects.get(id=pk)
+    task.delete()
+    return redirect('all_tasks')
 
