@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,20 +7,42 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Todo Application</title>
+    <link rel="stylesheet" href="{% static 'css/todo.css' %}">
 </head>
 <body>
-    <h1>Todo Application</h1>
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
-    </form>
 
-    {% for todo in tasks %}
-        <p>{{todo.tasks}}</p>
-        <a href="{% url 'update_task' todo.id %}"><button>Update</button></a>
-        <a href="{% url 'delete_task' todo.id %}"><button>Delete</button></a>
-    {% endfor %}
+    <div id="container">
+        <div id="formContainer">
+            <form method="POST" action="">
+                {{form}}
+                <button id="add" type="submit">Add</button>
+            </form>
+        </div>
+        <div id="todoItem">
+            {% for todo in tasks %}
+            <div class="item">
+                <p>{{todo.tasks}}</p>
+                <div class="controls">
+                    <a href="{% url 'update_task' todo.id %}"><button>Update</button></a>
+                    <a href="{% url 'delete_task' todo.id %}"><button>Delete</button></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+<!--    <h1>Todo Application</h1>-->
+<!--    <form method="POST" action="">-->
+<!--        {% csrf_token %}-->
+<!--        {{form.as_p}}-->
+<!--        <button type="submit">Submit</button>-->
+<!--    </form>-->
+
+<!--    {% for todo in tasks %}-->
+<!--        <p>{{todo.tasks}}</p>-->
+<!--        <a href="{% url 'update_task' todo.id %}"><button>Update</button></a>-->
+<!--        <a href="{% url 'delete_task' todo.id %}"><button>Delete</button></a>-->
+<!--    {% endfor %}-->
 
 </body>
 </html>
