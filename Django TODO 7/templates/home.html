@@ -20,24 +20,30 @@
                 {{form.as_p}}
                 <div class="field">
                     <div class="control">
-                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>
         </div><br><hr>
-        <form>
-            {% for task in tasks %}
-                <h4>{{task.title}}</h4>
-            <small style="color:brown;">🕒 {{task.date_added | date:"F d, Y H:i"}}</small> <span style="margin-left: 10px;">✅ <u class="h6 text-info">{{task.is_done}}</u></span>
-                <p>{{task.description}}</p>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <a href="{% url 'delete_task' task.id %}"><button class="btn btn-sm btn-danger">Delete</button></a>
-                </form>
-                <br>
-            {% empty %}
-                <h5>You don't have any todos yet ... Please add new tasks !</h5>
-            {% endfor %}
+        <div class="row align-items-start">
+            <form class="">
+                {% for task in tasks %}
+                    <h4>{{task.title}}</h4>
+                    <small style="color:brown;">🕒 {{task.date_added | date:"F d, Y H:i"}}</small>
+                    <strong style="margin-left: 10px;">Is done: <u class="h6 text-info">{{task.is_done}}</u></strong>
+                    <p>{{task.description}}</p>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <a href="{% url 'delete_task' task.id %}"><button class="btn btn-sm btn-danger">Delete</button></a>
+                        {% if not task.is_done %}
+                            <a class="btn btn-sm btn-success" href="{% url 'task' task.id %}?change_status=done">Maek as done</a>
+                        {% endif %}
+                    </form>
+                    <br>
+                {% empty %}
+                    <h5>You don't have any todos yet ... Please add new tasks !</h5>
+                {% endfor %}
+            </form>
         </div>
 
     </div> <br><br>

@@ -20,6 +20,9 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+def task(request, pk):
+    pass
+
 def delete_task(request, pk):
     task = Todo.objects.get(id=pk)
     task.delete()
