@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Todo
 from .forms import TodoForm
 
 # Create your views here.
 def home(request):
-    tasks = Todo.objects.all()
+    tasks = Todo.objects.all().order_by('-date_added')
     form = TodoForm()
     if request.method == 'POST':
         form = TodoForm(request.POST)
@@ -20,11 +20,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-def task(request, pk):
-    pass
-
-def delete_task(request, pk):
+def task_delete(request, pk):
     task = Todo.objects.get(id=pk)
     task.delete()
-    return redirect('home')
-
+    return redirect('/')
