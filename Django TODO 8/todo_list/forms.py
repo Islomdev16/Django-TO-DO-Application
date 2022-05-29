@@ -1,7 +1,7 @@
 from django import forms
-from .models import Todo
+from .models import Task
 
 class TodoForm(forms.ModelForm):
     class Meta:
-        model = Todo
-        fields = ['content']
+        model = Task
+        fields = "__all__"
