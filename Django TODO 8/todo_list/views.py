@@ -29,5 +29,17 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
-def about(request):
-    return HttpResponse("<h1>About Page</h1>")
+def update(request, pk):
+    todo = Task.objects.get(id=pk)
+    if request.method == 'POST':
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = TodoForm(instance=todo)
+
+    context = {
+        'form': form
+    }
+    return render(request, 'update.html', context)
