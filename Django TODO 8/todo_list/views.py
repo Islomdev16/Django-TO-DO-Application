@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Task
-from .forms import TodoForm
+from .forms import TodoForm, UpdateForm
 
 # Create your views here.
 def index(request):
@@ -32,12 +32,12 @@ def index(request):
 def update(request, pk):
     todo = Task.objects.get(id=pk)
     if request.method == 'POST':
-        form = TodoForm(request.POST, instance=todo)
+        form = UpdateForm(request.POST, instance=todo)
         if form.is_valid():
             form.save()
             return redirect('index')
     else:
-        form = TodoForm(instance=todo)
+        form = UpdateForm(instance=todo)
 
     context = {
         'form': form
