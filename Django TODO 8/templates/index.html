@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="border p-3">
+<div class="border p-3 shadow">
     <form method="POST" action="">
         {% csrf_token %}
         {{ form|crispy }}
@@ -15,7 +15,11 @@
         <small>{{ todo.date | date:"F d, Y H:i" }}</small>
         <div class="row">
             <div class="col-md-8">
-                <p>{{ todo.content }}</p>
+                {% if todo.complete == True %}
+                    <p>✅ {{ todo.content }}</p>
+                {% else %}
+                    <p>{{ todo.content }}</p>
+                {% endif %}
             </div>
             <div class="col-md-4">
                 <a class="btn btn-info btn-sm" href="{% url 'update' todo.id %}">Edit</a>
