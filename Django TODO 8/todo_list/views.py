@@ -29,6 +29,9 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+def about(request):
+    return render(request, 'about.html')
+
 def update(request, pk):
     todo = Task.objects.get(id=pk)
     if request.method == 'POST':
@@ -43,3 +46,10 @@ def update(request, pk):
         'form': form
     }
     return render(request, 'update.html', context)
+
+def delete(request, pk):
+    todo = Task.objects.get(id=pk)
+    if request.method == 'POST':
+        todo.delete()
+        return redirect('/')
+    return render(request, 'delete.html')

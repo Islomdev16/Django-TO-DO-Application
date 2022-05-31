@@ -2,7 +2,7 @@ from django import forms
 from .models import Task
 
 class TodoForm(forms.ModelForm):
-    content = forms.CharField(label='Add task', widget=forms.TextInput(attrs={"placeholder":"Add new task here ..."}))
+    content = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder":"Add new task here ..."}))
 
     class Meta:
         model = Task
