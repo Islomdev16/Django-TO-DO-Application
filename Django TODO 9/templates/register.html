@@ -28,13 +28,13 @@
 </nav><br><br>
 
     <div class="container">
-      <center class="h1">Register Page!</center>
-      <div class="col-lg-5 shadow mx-auto p-0">
+<!--      <center class="h1">Register Page!</center>-->
+      <div class="col-lg-6 shadow mx-auto p-0">
         <div class="alert alert-success">
-          <h2>Create Account</h2>
+          <center class="h2">Create Account</center>
         </div>
         <div class="p-4">
-          <form method="POST" action="">
+          <form method="GET" action="">
             {% csrf_token %}
             {{ form|crispy }}
             <hr>
