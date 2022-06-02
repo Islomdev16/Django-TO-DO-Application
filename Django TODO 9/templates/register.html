@@ -27,14 +27,24 @@
     </div>
 </nav><br><br>
 
+<!--    <div class="container">-->
+<!--    {% if messages %}-->
+<!--      {% for message in messages %}-->
+<!--        <div class="alert alert-{{message.tags}}">-->
+<!--          {{ message }}-->
+<!--        </div>-->
+<!--      {% endfor %}-->
+<!--    {% endif %}-->
+<!--    </div>-->
+
     <div class="container">
 <!--      <center class="h1">Register Page!</center>-->
       <div class="col-lg-6 shadow mx-auto p-0">
-        <div class="alert alert-success">
+        <div class="alert alert-info">
           <center class="h2">Create Account</center>
         </div>
-        <div class="p-4">
-          <form method="GET" action="">
+        <div class="p-5">
+          <form method="POST" action="">
             {% csrf_token %}
             {{ form|crispy }}
             <hr>
