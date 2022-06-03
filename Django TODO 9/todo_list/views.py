@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
 
 def login(request):
-    return render(request, 'login.html')
+    form = AuthenticationForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'login.html', context)
 
 # def register(request):
 #     if request.method == 'GET':
