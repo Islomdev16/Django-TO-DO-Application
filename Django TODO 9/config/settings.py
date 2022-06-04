@@ -114,6 +114,7 @@ USE_I18N = True
 USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = 'home'
 
 
 # Static files (CSS, JavaScript, Images)
