@@ -9,23 +9,14 @@ from django.contrib.auth.forms import AuthenticationForm
 def home(request):
     return render(request, 'index.html')
 
-
-
-# def loginUser(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#
-#         user = authenticate(request, username=username, password=password)
-#
-#         if user is not None:
-#             login(request, user)
-#             messages.success(request, f'Login is done successfully for {username} !')
-#             return redirect('home')
-#         else:
-#             return redirect('login')
-#             # messages.success(request, '❌ Username or password is incorrect')
-
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            return redirect('home')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form':form})
 
 def register(request):
     if request.method == 'POST':
