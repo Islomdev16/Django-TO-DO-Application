@@ -4,10 +4,15 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 # from django.http import HttpResponse
 # from django.contrib.auth import authenticate, login, logout
+from .forms import TODOForm
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    form = TODOForm()
+    context = {
+        'form':form
+    }
+    return render(request, 'index.html', context)
 
 def login(request):
     if request.method == 'POST':
