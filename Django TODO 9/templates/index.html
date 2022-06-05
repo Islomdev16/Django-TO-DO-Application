@@ -27,20 +27,49 @@
     </div>
 
     <div class="container">
-      <div class="col-lg-6 mx-auto shadow p-0 mt-4">
+      <div class="row p-0 mt-4">
+          <div class="col-lg-6 mx-auto shadow p-0">
         <div class="alert alert-info">
           <center class="h2">➕ Add New Task</center>
         </div>
         <div class="p-5">
-          <form method="POST" action="{% url 'home' %}">
+          <form method="POST" action="{% url 'add_todo' %}">
             {% csrf_token %}
             {{ form|crispy }}
             <hr>
-<!--            <div class="d-grid gap-2">-->
               <input type="submit" value="Submit" class="btn btn-large btn-success">
-<!--            </div>-->
           </form>
         </div>
+      </div>
+          <div class="col">
+              <div class="border">
+                  <div>
+                      <table class="table table-hover table-success table-striped">
+                          <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Date</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                          {% for todo in todos %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ todo.title }}</td>
+                                <td>{{ todo.status }}</td>
+                                <td>{{ todo.priority }}</td>
+                                <td>{{ todo.date | date:'F d, Y H:i' }}</td>
+                            </tr>
+                          {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
       </div>
     </div>
 

@@ -5,14 +5,32 @@ from django.contrib.auth.forms import AuthenticationForm
 # from django.http import HttpResponse
 # from django.contrib.auth import authenticate, login, logout
 from .forms import TODOForm
+from .models import TODO
 
 # Create your views here.
 def home(request):
-    form = TODOForm()
-    context = {
-        'form':form
-    }
-    return render(request, 'index.html', context)
+    if request.user.is_authenticated:
+        user = request.user
+        form = TODOForm()
+        todos = TODO.objects.filter(user=user)
+        context = {
+            'form': form,
+            'todos': todos
+        }
+        return render(request, 'index.html', context)
+
+def add_todo(request):
+    if request.user.is_authenticated:
+        user = request.user
+        form = TODOForm(request.POST)
+        if form.is_valid():
+            todo = form.save(commit=False)
+            todo.user = user
+            todo.save()
+            return redirect('home')
+        else:
+            return render(request, 'index.html', {'form': form})
+
 
 def login(request):
     if request.method == 'POST':

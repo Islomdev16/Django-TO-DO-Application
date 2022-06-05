@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class TODO(models.Model):
     status_choices = [
         ('C', 'Completed'),
-        ('F', 'Pending'),
+        ('P', 'Pending'),
     ]
     priority_choices = [
         ('1', '1️⃣'),
