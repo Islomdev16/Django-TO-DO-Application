@@ -69,3 +69,9 @@ def logoutUser(request):
 def deleteTask(request, pk):
     TODO.objects.get(id=pk).delete()
     return redirect('home')
+
+def change_status(request, pk, status):
+    todo = TODO.objects.get(id=pk)
+    todo.status = status
+    todo.save()
+    return redirect('home')
