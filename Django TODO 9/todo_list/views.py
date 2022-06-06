@@ -2,14 +2,14 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-# from django.http import HttpResponse
+from django.http import HttpResponse
 from django.contrib.auth import logout
 from .forms import TODOForm
 from django.contrib.auth.decorators import login_required
 from .models import TODO
 
 # Create your views here.
-@login_required(login_url='login')
+@login_required(login_url='loginUser')
 def home(request):
     if request.user.is_authenticated:
         user = request.user
@@ -21,7 +21,7 @@ def home(request):
         }
         return render(request, 'index.html', context)
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def add_todo(request):
     if request.user.is_authenticated:
         user = request.user
@@ -35,7 +35,7 @@ def add_todo(request):
             return render(request, 'index.html', {'form': form})
 
 
-def login(request):
+def loginUser(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -45,7 +45,7 @@ def login(request):
     return render(request, 'login.html', {'form':form})
 
 
-def register(request):
+def registerUser(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -65,3 +65,7 @@ def register(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+def deleteTask(request, pk):
+    TODO.objects.get(id=pk).delete()
+    return redirect('home')

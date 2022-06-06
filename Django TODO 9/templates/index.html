@@ -44,7 +44,7 @@
           <div class="col">
               <div class="border">
                   <div>
-                      <table class="table table-hover table-success table-striped">
+                      <table class="table table-hover table-secondary table-striped">
                           <thead>
                             <tr>
                                 <th>#</th>
@@ -52,7 +52,7 @@
                                 <th>Status</th>
                                 <th>Priority</th>
                                 <th>Date</th>
-                                <th>Delete</th>
+                                <th>🗑️</th>
                             </tr>
                           </thead>
 
@@ -64,7 +64,7 @@
                                 <td>{{ todo.status }}</td>
                                 <td>{{ todo.priority }}</td>
                                 <td>{{ todo.date | date:'F d, Y H:i' }}</td>
-                                <td><a href="#" class="btn btn-sm btn-danger">Delete</a></td>
+                                <td><a href="{% url 'delete' todo.id %}" class="btn btn-sm btn-danger">Delete</a></td>
                             </tr>
                           {% endfor %}
                           </tbody>
