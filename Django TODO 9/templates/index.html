@@ -52,6 +52,7 @@
                                 <th>Status</th>
                                 <th>Priority</th>
                                 <th>Date</th>
+                                <th>Delete</th>
                             </tr>
                           </thead>
 
@@ -63,6 +64,7 @@
                                 <td>{{ todo.status }}</td>
                                 <td>{{ todo.priority }}</td>
                                 <td>{{ todo.date | date:'F d, Y H:i' }}</td>
+                                <td><a href="#" class="btn btn-sm btn-danger">Delete</a></td>
                             </tr>
                           {% endfor %}
                           </tbody>

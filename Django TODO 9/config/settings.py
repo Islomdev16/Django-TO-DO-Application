@@ -115,6 +115,7 @@ USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
 
 
 # Static files (CSS, JavaScript, Images)
