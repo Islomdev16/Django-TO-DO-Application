@@ -8,8 +8,12 @@
 </head>
 <body>
 
-    <h1>Task: {{ task }}</h1>
-    <p>{{ task.description }}</p>
+    <h1>Task Form</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Task Create">
+    </form>
 
 </body>
 </html>
