@@ -21,15 +21,15 @@
         </tr>
         {% for task in tasks %}
         <tr>
-            <td>{{task.id}} - {{task.title}}</td>
-            <td><a href="{% url 'task_detail' task.id %}">View</a></td>
+            <td>{{task.title}}</td>
+            <td><a href="{% url 'task_detail' task.id %}" style="margin-left: 10px;">View</a></td>
             <td><a href="{% url 'create_task' %}">Add</a></td>
             <td><a href="{% url 'update_task' task.id %}">Update</a></td>
             <td><a href="{% url 'delete_task' task.id %}">Delete</a></td>
         </tr>
         {% empty %}
         <h3>No items in List</h3>
-        <a href="">Add New Items</a>
+        <a href="{% url 'create_task' %}">Add New Items</a>
         {% endfor %}
     </table>
 
