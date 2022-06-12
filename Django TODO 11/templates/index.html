@@ -10,16 +10,24 @@
 <body>
 
     <div class="container">
-        <center class="h2">List of tasks</center><br><br>
-        <form method="POST" action="">
+        <br><br>
+        <center class="h1">List of tasks</center>
+        <form method="POST" action="" style="margin-top: 50px;">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Save task" class="btn btn-sm btn-success">
         </form>
-        <div class="todo-list" style="margin-top: 30px;">
+        <div class="todo-list" style="margin-top: 60px;">
             {% for task in tasks %}
                 <div class="item-row">
-                    <span>{{task.title}}</span>
+                    {% if task.complete == True %}
+                        <strike>{{task.title}}</strike>
+                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                    {% else %}
+                        <span>{{task.title}}</span>
+                        <a href="{% url 'update' task.id %}" class="btn btn-sm btn-primary">Update</a>
+                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
