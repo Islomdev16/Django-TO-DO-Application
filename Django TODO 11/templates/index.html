@@ -22,11 +22,11 @@
                 <div class="item-row">
                     {% if task.complete == True %}
                         <strike>{{task.title}}</strike>
-                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="{% url 'delete' task.id %}" class="btn btn-sm btn-outline-warning">Delete</a>
                     {% else %}
                         <span>{{task.title}}</span>
                         <a href="{% url 'update' task.id %}" class="btn btn-sm btn-primary">Update</a>
-                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="{% url 'delete' task.id %}" class="btn btn-sm btn-outline-warning">Delete</a>
                     {% endif %}
                 </div>
             {% endfor %}
