@@ -1,5 +1,18 @@
 from django.shortcuts import render, redirect
+from .forms import TaskForm
+from .models import Task
 
-# Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    tasks = Task.objects.all().order_by('complete', 'due')
+    form = TaskForm()
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
+
+    context = {
+        'tasks':tasks,
+        'form':form
+    }
+    return render(request, 'index.html', context)
