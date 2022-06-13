@@ -60,6 +60,11 @@
 		color: white;
 		font-size: 25px;
 	}
+	.timer{
+	    background-color: #dc3545;
+	    border-radius: 5px;
+	    padding: 5px;
+	}
 </style>
 
 </head>
@@ -76,13 +81,13 @@
             {% for task in tasks %}
                 <div class="item-row">
                     {% if task.complete == True %}
-                        <strike>{{task.title}}</strike>
-                        <a href="{% url 'delete' task.id %}" class="btn btn-medium btn-danger">Delete</a>
+                        <strike>{{task.title}}, {{task.due}}</strike>
                     {% else %}
                         <span>{{task.title}}</span>
-                        <a href="{% url 'update' task.id %}" class="btn btn-medium btn-primary">Update</a>
-                        <a href="{% url 'delete' task.id %}" class="btn btn-medium btn-danger">Delete</a>
+                        <span style="float: right;" class="timer"><b>Due: </b>{{ task.due|timeuntil }}</span>
                     {% endif %}
+                    <a href="{% url 'update' task.id %}" class="btn btn-medium btn-primary">Update</a>
+                    <a href="{% url 'delete' task.id %}" class="btn btn-medium btn-danger">Delete</a>
                 </div>
             {% endfor %}
         </div>
