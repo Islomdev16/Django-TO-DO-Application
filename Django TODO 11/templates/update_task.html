@@ -30,6 +30,7 @@
     <style>
 	body{
 		background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(33,138,47,1) 100%);
+		padding: 40px 0px 204px 0px;
 	}
 	input{
 		width: 100%;
@@ -63,14 +64,13 @@
 </head>
 <body>
 
-    <div class="container">
-        <br><br>
-        <center class="h1">Update Form</center>
-        <a href="{% url 'home' %}" class="btn btn-sm btn-secondary" style="margin-top:50px;">🔙 Back</a>
-        <form method="POST" action="" style="margin-top:40px;">
+    <div class="container" style="margin-top: 50px;">
+        <center class="h1" style="margin-top: 10px;">Update Form</center>
+        <a href="{% url 'home' %}" class="btn btn-medium btn-secondary" style="margin-top:25px;">🔙 Back</a>
+        <form method="POST" action="" style="margin-top:30px;">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Update task" class="btn btn-outline-success btn-medium">
+            <input type="submit" value="Update task" class="btn save">
         </form>
     </div>
 

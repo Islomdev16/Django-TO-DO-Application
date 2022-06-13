@@ -30,6 +30,7 @@
     <style>
 	body{
 		background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(33,138,47,1) 100%);
+        padding: 10px 0px 202px 0px;
 	}
 	input{
 		width: 100%;
@@ -92,7 +93,7 @@
       var date_input=$('input[name="due"]');
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'yy-mm-dd',
       };
       date_input.datepicker(options);
     })
