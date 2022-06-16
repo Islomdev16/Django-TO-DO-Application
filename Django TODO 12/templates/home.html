@@ -40,6 +40,15 @@
     </div>
 
     <div class="container">
+        <form method="POST" action="">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control mr-2" id="title" name="title"  placeholder="Enter your task title ..." aria-label="" aria-describedby="basic-addon1">
+                <button class="btn btn-primary" type="button">➕ Add Task</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
         <div class="list-group">
             {% for task in tasks %}
                 <a href="#" class="list-group-item list-group-item-primary mt-2" style="box-shadow: 10px 10px lightblue; margin-bottom: 10px;">
