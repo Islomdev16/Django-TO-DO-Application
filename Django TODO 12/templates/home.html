@@ -43,13 +43,16 @@
         <div class="list-group">
             {% for task in tasks %}
                 <a href="#" class="list-group-item list-group-item-primary mt-2" style="box-shadow: 10px 10px lightblue; margin-bottom: 10px;">
-                    {{task.title}}
-                    {% if i.complete %}
+                    {% if task.complete %}
+                        <strike>{{task.title}}</strike>
+                        <button type="button" class="btn btn-danger float-right">🗑 Delete</button>
                         <button type="button" class="btn btn-success float-right mr-2">✔️ Completed</button>
-                    {% elif i.complete != '' %}
+                    {% elif task.complete != 'True' %}
+                        {{task.title}}
                         <button type="button" class="btn btn-danger float-right">🗑 Delete</button>
                         <button type="button" class="btn btn-success float-right mr-2">✔️ Complete</button>
                     {% endif %}
+
                 </a>
             {% endfor %}
         </div>
