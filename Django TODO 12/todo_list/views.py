@@ -3,7 +3,10 @@ from .models import MyTodo
 
 # Create your views here.
 def home(request):
-    tasks = MyTodo.objects.all().order_by('-created_at')
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        MyTodo.objects.create(title=title)
+    tasks = MyTodo.objects.all().order_by("complete", '-created_at')
     context = {
         'tasks':tasks
     }
