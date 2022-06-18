@@ -55,7 +55,7 @@
                 <a href="#" class="list-group-item list-group-item-primary mt-2" style="box-shadow: 10px 10px lightblue; margin-bottom: 10px;">
                     {% if task.complete %}
                         <strike>{{task.title}}</strike><br>
-<!--                        <small>🕒 {{ task.created_at|date:'F d, Y H:i' }}</small>-->
+                        <small>🕒 {{ task.created_at|date:'F d, Y H:i' }}</small>
                         <form method="POST" style="margin-top: -50px;" action="{% url 'delete_task' task.id %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger float-right">🗑 Delete</button>
@@ -66,7 +66,7 @@
                         </form>
                     {% elif task.complete != 'True' %}
                         <span>{{task.title}}</span><br>
-<!--                        <small>🕒 {{ task.created_at|date:'F d, Y H:i' }}</small>-->
+                        <small>🕒 {{ task.created_at|date:'F d, Y H:i' }}</small>
                         <form method="POST" style="margin-top: -50px;" action="{% url 'delete_task' task.id %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger float-right">🗑 Delete</button>
