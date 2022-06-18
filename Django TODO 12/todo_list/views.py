@@ -13,3 +13,9 @@ def home(request):
         'tasks':tasks
     }
     return render(request, 'home.html', context)
+
+def delete_task(request, pk):
+    task_delete = MyTodo.objects.get(id=pk)
+    task_delete.delete()
+    return redirect('home')
+

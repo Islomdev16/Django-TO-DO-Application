@@ -54,12 +54,20 @@
             {% for task in tasks %}
                 <a href="#" class="list-group-item list-group-item-primary mt-2" style="box-shadow: 10px 10px lightblue; margin-bottom: 10px;">
                     {% if task.complete %}
-                        <strike>{{task.title}}</strike>
-                        <button type="button" class="btn btn-danger float-right">🗑 Delete</button>
+                        <strike>{{task.title}}</strike><br>
+                        <small>🕒 {{ task.created_at|date:'F d, Y H:i' }}</small>
+                        <form method="POST" style="margin-top: -50px;" action="{% url 'delete_task' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger float-right">🗑 Delete</button>
+                        </form>
                         <button type="button" class="btn btn-success float-right mr-2">✔️ Completed</button>
                     {% elif task.complete != 'True' %}
-                        {{task.title}}
-                        <button type="button" class="btn btn-danger float-right">🗑 Delete</button>
+                        <span>{{task.title}}</span><br>
+                        <small>🕒 {{ task.created_at|date:'F d, Y H:i' }}</small>
+                        <form method="POST" style="margin-top: -50px;" action="{% url 'delete_task' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger float-right">🗑 Delete</button>
+                        </form>
                         <button type="button" class="btn btn-success float-right mr-2">✔️ Complete</button>
                     {% endif %}
 
