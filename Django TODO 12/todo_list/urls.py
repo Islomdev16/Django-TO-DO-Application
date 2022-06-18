@@ -4,4 +4,6 @@ from .import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('delete/<int:pk>/', views.delete_task, name='delete_task'),
+    path('complete/<int:pk>/', views.complete, name='complete'),
+    path('uncomplete/<int:pk>/', views.uncomplete, name='uncomplete'),
 ]

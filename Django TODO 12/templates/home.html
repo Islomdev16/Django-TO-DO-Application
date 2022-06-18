@@ -35,7 +35,7 @@
     <div class="text-center mt-4">
         <div class="container">
             <span class="display-4">My Personal Notes App</span>
-            <p class="lead">📝 This is my first Django TODO Small Project</p>
+            <p class="lead">📝 These are all my todays tasks of <u class="font-weight-bold">{{count_tasks}}</u>.</p>
         </div>
     </div><br>
 
@@ -60,7 +60,10 @@
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger float-right">🗑 Delete</button>
                         </form>
-                        <button type="button" class="btn btn-success float-right mr-2">✔️ Completed</button>
+                        <form method="POST" action="{% url 'uncomplete' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success float-right mr-2">✔️ Completed</button>
+                        </form>
                     {% elif task.complete != 'True' %}
                         <span>{{task.title}}</span><br>
                         <small>🕒 {{ task.created_at|date:'F d, Y H:i' }}</small>
@@ -68,7 +71,10 @@
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger float-right">🗑 Delete</button>
                         </form>
-                        <button type="button" class="btn btn-success float-right mr-2">✔️ Complete</button>
+                        <form method="POST" action="{% url 'complete' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success float-right mr-2">Complete</button>
+                        </form>
                     {% endif %}
 
                 </a>
